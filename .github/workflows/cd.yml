@@ -1,27 +1,35 @@
 name: cd
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
-  jobs:
-    tests:
-      name: Tests
-      runs-on: debian-latest
+jobs:
+  tests:
+    name: Tests
+    runs-on: debian-latest
 
-      steps:
-        - name: check out code
-          uses: actions/checkout@v4
-  
-        - name: Set up Go
-          uses: actions/setup-go@v5
-          with: 
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
           go-version: 1.23.1
 
-    Deploy:
-      name: Deploy
-      runs-on: debian-latest
+  style:
+    name: Deploy
+    runs-on: debian-latest
 
-      steps:
-        - name: buildprod.sh
-          uses: scripts/buildprod.sh
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.23.1
+
+      - name: build notely
+        run: scripts/buildprod.sh
+
