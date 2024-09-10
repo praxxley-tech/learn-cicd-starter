@@ -6,7 +6,7 @@ on:
 jobs:
   tests:
     name: Tests
-    runs-on: debian-latest
+    runs-on: self-hosted
 
     steps:
       - name: Check out code
@@ -19,7 +19,7 @@ jobs:
 
   style:
     name: Deploy
-    runs-on: debian-latest
+    runs-on: self-hosted
 
     steps:
       - name: Check out code
